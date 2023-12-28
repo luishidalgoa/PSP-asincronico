@@ -1,10 +1,11 @@
 package dev.iesfranciscodelosrios.psp_async_navidad.domain.model;
 
+import java.sql.Date;
 import java.time.LocalTime;
 
 public class Revision {
     private int id;
-    private LocalTime fecha;
+    private Date fecha;
     private boolean estado;
     private Identificacion identificacion;
     private Exterior exterior;
@@ -12,7 +13,7 @@ public class Revision {
     private Alineacion alineacion;
     private Emisores emisores;
 
-    public Revision(int id, LocalTime fecha, boolean estado, Identificacion identificacion, Exterior exterior, Interior interior, Alineacion alineacion, Emisores emisores) {
+    public Revision(int id, Date fecha, boolean estado, Identificacion identificacion, Exterior exterior, Interior interior, Alineacion alineacion, Emisores emisores) {
         this.id = id;
         this.fecha = fecha;
         this.estado = estado;
@@ -23,7 +24,7 @@ public class Revision {
         this.emisores = emisores;
     }
 
-    public Revision(LocalTime fecha, boolean estado, Identificacion identificacion, Exterior exterior, Interior interior, Alineacion alineacion, Emisores emisores) {
+    public Revision(Date fecha, boolean estado, Identificacion identificacion, Exterior exterior, Interior interior, Alineacion alineacion, Emisores emisores) {
         this.fecha = fecha;
         this.estado = estado;
         this.identificacion = identificacion;
@@ -44,11 +45,11 @@ public class Revision {
         this.id = id;
     }
 
-    public LocalTime getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalTime fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import dev.iesfranciscodelosrios.psp_async_navidad.Connection.ConnectionData;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.enums.Neumaticos;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.Exterior;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.Revision;
@@ -13,10 +14,11 @@ import dev.iesfranciscodelosrios.psp_async_navidad.interfaces.iExteriorDAO;
 public class ExteriorDAO implements iExteriorDAO {
 
     private Connection connection; // Necesitarás establecer la conexión a la base de datos
+    private static ExteriorDAO _instance;
 
     // Constructor que recibe la conexión a la base de datos
-    public ExteriorDAO(Connection connection) {
-        this.connection = connection;
+    private ExteriorDAO(Connection connection) {
+        this.connection = ConnectionData.getConnection();
     }
 
     @Override
@@ -87,5 +89,15 @@ public class ExteriorDAO implements iExteriorDAO {
         exterior.setTestDeposito(resultSet.getBoolean("testDeposito"));
 
         return exterior;
+    }
+
+
+    public static ExteriorDAO getInstance() {
+
+        if (_instance == null) {
+            _instance = new ExteriorDAO(connection);
+        }
+
+        return _instance;
     }
 }
