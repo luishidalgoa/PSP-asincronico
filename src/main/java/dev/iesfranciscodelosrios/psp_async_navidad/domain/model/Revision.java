@@ -37,6 +37,10 @@ public class Revision {
     public Revision() {
     }
 
+    public Revision(int idRev) {
+        this.id = idRev;
+    }
+
     public int getId() {
         return id;
     }

@@ -13,7 +13,7 @@ import dev.iesfranciscodelosrios.psp_async_navidad.interfaces.iExteriorDAO;
 
 public class ExteriorDAO implements iExteriorDAO {
 
-    private Connection connection; // Necesitarás establecer la conexión a la base de datos
+    private static Connection connection; // Necesitarás establecer la conexión a la base de datos
     private static ExteriorDAO _instance;
 
     // Constructor que recibe la conexión a la base de datos
