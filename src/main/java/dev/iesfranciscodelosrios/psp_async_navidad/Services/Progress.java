@@ -21,7 +21,7 @@ public class Progress {
      * @return
      */
     public int getProgress(){
-
+        return -1;
     }
 
     /**
