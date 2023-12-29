@@ -50,7 +50,7 @@ public class InteriorDAO implements iInteriorDAO {
                     boolean antideslizante = resultSet.getBoolean("antideslizante");
                     boolean frenado = resultSet.getBoolean("frenado");
 
-                    return new Interior(revision, antirobo, antideslizante, frenado);
+                    return new Interior(revision, antirobo, antideslizante, frenado).getRevision();
                 }
             }
         } catch (SQLException e) {
