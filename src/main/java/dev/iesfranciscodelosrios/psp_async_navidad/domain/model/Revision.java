@@ -1,9 +1,11 @@
 package dev.iesfranciscodelosrios.psp_async_navidad.domain.model;
 
+import dev.iesfranciscodelosrios.psp_async_navidad.Services.Progress;
+
 import java.sql.Date;
 import java.time.LocalTime;
 
-public class Revision {
+public class Revision extends Progress {
     private int id;
     private Date fecha;
     private boolean estado;
