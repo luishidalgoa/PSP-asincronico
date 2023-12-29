@@ -10,4 +10,21 @@ public class Progress {
     public Progress(){
 
     }
+
+    /**
+     * Este metodo sera el metodo de entrada a la barra de progreso.
+     *
+     * El metodo debe checkear si en primer lugar todos los atributos del objeto Identificacion de Revision estan checkeados.
+     * luego de verficiarlo debe verficiar si el Interior se ha completado, etc...
+     *
+     * (PROBLEMA. Los campos pueden ser true o false y no necesariamente un false significa que no este chekeado)
+     * @return
+     */
+    public int getProgress(){
+
+    }
+
+    /**
+     * NECESITARAS MAS METODOS PARA TRABAJAR. CREA LOS QUE VEAS PERTINENTES
+     */
 }
