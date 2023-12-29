@@ -22,6 +22,10 @@ public class Coche {
     public Coche() {
     }
 
+    public Coche(int idCoche) {
+        this.id = idCoche;
+    }
+
     public int getId() {
         return id;
     }

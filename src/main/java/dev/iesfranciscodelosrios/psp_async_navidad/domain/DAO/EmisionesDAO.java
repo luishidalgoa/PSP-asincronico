@@ -1,5 +1,6 @@
 package dev.iesfranciscodelosrios.psp_async_navidad.domain.DAO;
 
+import dev.iesfranciscodelosrios.psp_async_navidad.Connection.ConnectionData;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.Emisores;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.Revision;
 import dev.iesfranciscodelosrios.psp_async_navidad.interfaces.iEmisionesDAO;
@@ -12,15 +13,11 @@ import java.sql.SQLException;
 public class EmisionesDAO implements iEmisionesDAO {
 
     private Connection conn;
+    private static EmisionesDAO _instance;
 
-    public EmisionesDAO(Connection conn) throws SQLException {
-        this.conn = conn;
+    private EmisionesDAO() throws SQLException {
+        this.conn = ConnectionData.getConnection();
     }
-
-    public EmisionesDAO() throws SQLException {
-        this.conn = Connect.getConnect();
-    }
-
     @Override
     public boolean addEmisiones(Emisores emisores) {
         String sql = "INSERT INTO emisores (id_rev, indice, test_emisiones) VALUES (?, ?, ?)";
@@ -37,7 +34,6 @@ public class EmisionesDAO implements iEmisionesDAO {
             return false;
         }
     }
-
     @Override
     public Emisores getEmisionesByRevision(Revision revision) {
         String sql = "SELECT * FROM emisores WHERE id_rev = ?";
@@ -57,5 +53,16 @@ public class EmisionesDAO implements iEmisionesDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static EmisionesDAO getInstance() {
+        if (_instance == null) {
+            try {
+                _instance = new EmisionesDAO();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return _instance;
     }
 }

@@ -1,5 +1,6 @@
 package dev.iesfranciscodelosrios.psp_async_navidad.domain.DAO;
 
+import dev.iesfranciscodelosrios.psp_async_navidad.Connection.ConnectionData;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.Interior;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.Revision;
 import dev.iesfranciscodelosrios.psp_async_navidad.interfaces.iInteriorDAO;
@@ -12,13 +13,10 @@ import java.sql.SQLException;
 public class InteriorDAO implements iInteriorDAO {
 
     private Connection conn;
+    private static InteriorDAO _instance;
 
-    public InteriorDAO(Connection conn) throws SQLException {
-        this.conn = conn;
-    }
-
-    public InteriorDAO() throws SQLException {
-        this.conn = Connect.getConnect();
+    private InteriorDAO() throws SQLException {
+        this.conn = ConnectionData.getConnection();
     }
 
     @Override
@@ -59,5 +57,16 @@ public class InteriorDAO implements iInteriorDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static InteriorDAO getInstance() {
+        if (_instance == null) {
+            try {
+                _instance = new InteriorDAO();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return _instance;
     }
 }
