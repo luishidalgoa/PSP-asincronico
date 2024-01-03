@@ -5,6 +5,15 @@ public class Interior {
     private boolean antirobo;
     private boolean antideslizante;
     private boolean frenado;
+    private int contador;
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
 
     public Interior(Revision revision, boolean antirobo, boolean antideslizante, boolean frenado) {
         this.revision = revision;
