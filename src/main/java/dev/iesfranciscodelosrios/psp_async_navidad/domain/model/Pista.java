@@ -4,6 +4,8 @@ public class Pista {
     public int completadoPorcentaje;
     private Revision revision;
 
+    public boolean libre = true;
+
     public Pista() {
         completadoPorcentaje = 0;
     }
@@ -27,5 +29,17 @@ public class Pista {
 
     public void setRevision(Revision revision) {
         this.revision = revision;
+    }
+
+    public synchronized void ocuparPista() {
+        libre = false;
+    }
+
+    public synchronized void liberarPista() {
+        libre = true;
+        notifyAll();
+    }
+    public boolean getLibre(){
+        return libre;
     }
 }

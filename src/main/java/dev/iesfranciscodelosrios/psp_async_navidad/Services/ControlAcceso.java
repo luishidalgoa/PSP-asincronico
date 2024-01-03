@@ -4,10 +4,8 @@ import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.Pista;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
 
-public class ControlAcceso implements Runnable {
+public class ControlAcceso {
 
     private static ControlAcceso instance;
     private static final List<Pista> pistas = new ArrayList<>();
@@ -17,25 +15,22 @@ public class ControlAcceso implements Runnable {
         for (int i = 0; i < 3 ; i++) {
             pistas.add(new Pista());
         }
-        Thread t = new Thread(this);
-        t.start();
     }
 
-    synchronized public Pista getPista(){
+    public synchronized Pista getPista() {
         for (Pista pista : pistas) {
-            if(pista.getCompletadoPorcentaje() == 0){
+            if (pista.getLibre()) {
+                pista.ocuparPista();
                 return pista;
             }
         }
         try {
-            System.out.println("TOCA ESPERAR ");
-            wait();
+            System.out.println("No hay pistas libres, esperando");
+            wait(); // Esperar si no hay pistas libres
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
-        System.out.println("SALGO DE ESPERAR ");
-        return null;
-
+        return getPista(); // Intentar nuevamente después de la espera
     }
 
 
@@ -45,22 +40,5 @@ public class ControlAcceso implements Runnable {
             instance = new ControlAcceso();
         }
         return instance;
-    }
-
-    @Override
-    public void run() {
-
-        while (true) {
-            for (Pista pista : pistas) {
-                if(pista.completadoPorcentaje==0){
-                    notifyAll();
-                }
-            }
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 }
