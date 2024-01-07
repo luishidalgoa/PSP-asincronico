@@ -45,7 +45,7 @@ public class Simulacion {
         contadorTotalPruebas += emisores(revision.getEmisores());
 
         // Guardar los datos en la base de datos a través de los DAOs
-        RevisionDAO revisionDAO = new RevisionDAO();
+        RevisionDAO revisionDAO = RevisionDAO.getInstance();
         revisionDAO.addRevision(revision);
 
         System.out.println("Total de pruebas realizadas: " + contadorTotalPruebas);
