@@ -9,6 +9,15 @@ public class Exterior {
     private boolean testLuces;
     private boolean testCinturones;
     private boolean testDeposito;
+    private int contador;
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
 
     public Exterior(Revision revision, Neumaticos neumaticos, boolean testLimpiaParabrisas, boolean testLuces, boolean testCinturones, boolean testDeposito) {
         this.revision = revision;

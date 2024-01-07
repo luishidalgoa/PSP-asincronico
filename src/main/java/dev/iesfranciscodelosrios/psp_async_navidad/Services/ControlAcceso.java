@@ -10,15 +10,30 @@ public class ControlAcceso {
     private static ControlAcceso instance;
     private static final List<Pista> pistas = new ArrayList<>();
 
+
     private ControlAcceso(){
         for (int i = 0; i < 3 ; i++) {
             pistas.add(new Pista());
         }
     }
 
-    synchronized public Pista getPista(){
-        return null;
+    public synchronized Pista getPista() {
+        for (Pista pista : pistas) {
+            if (pista.getLibre()) {
+                pista.ocuparPista();
+                return pista;
+            }
+        }
+        try {
+            System.out.println("No hay pistas libres, esperando");
+            wait(); // Esperar si no hay pistas libres
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return getPista(); // Intentar nuevamente después de la espera
     }
+
+
 
     public static ControlAcceso getInstance(){
         if(instance == null){
