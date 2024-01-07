@@ -6,6 +6,15 @@ public class Alineacion {
     private boolean testFugas;
     private boolean testDireccion;
     private boolean amortiguacion;
+    private int contador;
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
 
     public Alineacion(Revision revision, boolean volante, boolean testFugas, boolean testDireccion, boolean amortiguacion) {
         this.revision = revision;

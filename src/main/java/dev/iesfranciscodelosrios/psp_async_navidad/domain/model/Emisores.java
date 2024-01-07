@@ -4,6 +4,15 @@ public class Emisores {
     private Revision revision;
     private float indice;
     private boolean testEmisiones;
+    private int contador;
+
+    public int getContador() {
+        return contador;
+    }
+
+    public void setContador(int contador) {
+        this.contador = contador;
+    }
 
     public Emisores(Revision revision, float indice, boolean testEmisiones) {
         this.revision = revision;
