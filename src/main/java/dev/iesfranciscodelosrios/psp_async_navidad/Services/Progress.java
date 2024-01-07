@@ -19,8 +19,7 @@ public class Progress {
         super(); // Llamar al constructor de la clase base (Progress es una extensión de Revision)
         this.revision = revision;
     }
-
-    /**
+/**
      * Este método es el método de entrada a la barra de progreso.
      * El método debe verificar si, en primer lugar, todos los atributos del objeto Identificacion de Revision están chequeados.
      * Luego de verificarlo, debe verificar si el Interior se ha completado, etc...
