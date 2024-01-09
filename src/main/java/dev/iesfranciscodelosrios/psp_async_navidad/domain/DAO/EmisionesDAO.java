@@ -44,7 +44,7 @@ public class EmisionesDAO implements iEmisionesDAO {
             try (ResultSet resultSet = stmt.executeQuery()) {
                 if (resultSet.next()) {
                     float indice = resultSet.getFloat("indice");
-                    boolean testEmisiones = resultSet.getBoolean("test_emisiones");
+                    boolean testEmisiones = resultSet.getBoolean("testEmisiones");
 
                     return new Emisores(revision, indice, testEmisiones);
                 }

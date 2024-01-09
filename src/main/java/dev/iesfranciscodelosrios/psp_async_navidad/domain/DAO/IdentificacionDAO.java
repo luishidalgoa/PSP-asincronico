@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import dev.iesfranciscodelosrios.psp_async_navidad.Connection.ConnectionData;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.Coche;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.Identificacion;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.Revision;
@@ -13,10 +14,11 @@ import dev.iesfranciscodelosrios.psp_async_navidad.interfaces.iIdentificacionDAO
 public class IdentificacionDAO implements iIdentificacionDAO {
 
     private Connection connection; // Necesitarás establecer la conexión a la base de datos
+    private static IdentificacionDAO _instance;
 
     // Constructor que recibe la conexión a la base de datos
-    public IdentificacionDAO(Connection connection) {
-        this.connection = connection;
+    private IdentificacionDAO() {
+        this.connection = ConnectionData.getConnection();
     }
 
     @Override
@@ -36,7 +38,7 @@ public class IdentificacionDAO implements iIdentificacionDAO {
     }
 
     @Override
-    public Revision getIdentificacionByRevision(Revision revision) {
+    public Identificacion getIdentificacionByRevision(Revision revision) {
         String query = "SELECT * FROM Identificacion WHERE id_rev = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -44,9 +46,11 @@ public class IdentificacionDAO implements iIdentificacionDAO {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    Identificacion identificacion = mapResultSetToIdentificacion(resultSet);
+                    Identificacion identificacion = new Identificacion();
                     identificacion.setRevision(revision);
-                    return identificacion.getRevision();
+                    identificacion.setContador(0);
+                    identificacion.setCoche(CocheDAO.getInstance().getCocheByMat(resultSet.getString("matricula")));
+                    return identificacion;
                 }
             }
         } catch (SQLException e) {
@@ -89,5 +93,12 @@ public class IdentificacionDAO implements iIdentificacionDAO {
         identificacion.setCoche(new Coche(resultSet.getInt("id_coche")));
 
         return identificacion;
+    }
+
+    public static IdentificacionDAO getInstance(){
+        if(_instance == null){
+            _instance = new IdentificacionDAO();
+        }
+        return _instance;
     }
 }

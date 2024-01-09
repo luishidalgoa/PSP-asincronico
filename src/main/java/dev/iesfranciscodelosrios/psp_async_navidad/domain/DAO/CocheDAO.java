@@ -22,6 +22,7 @@ public class CocheDAO implements iCocheDAO {
         String query = "select id,marca,modelo,matricula from coche where matricula = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1,matricula);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 Coche result = new Coche();

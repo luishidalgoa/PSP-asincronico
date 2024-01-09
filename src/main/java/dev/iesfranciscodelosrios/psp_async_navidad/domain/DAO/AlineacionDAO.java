@@ -1,5 +1,6 @@
 package dev.iesfranciscodelosrios.psp_async_navidad.domain.DAO;
 
+import dev.iesfranciscodelosrios.psp_async_navidad.Connection.ConnectionData;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.Alineacion;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.Revision;
 import dev.iesfranciscodelosrios.psp_async_navidad.interfaces.iAlineacionDAO;
@@ -13,6 +14,10 @@ import java.util.Date;
 public class AlineacionDAO implements iAlineacionDAO {
     private Connection conn;
     private static AlineacionDAO _instance;
+
+    private AlineacionDAO(){
+        conn = ConnectionData.getConnection();
+    }
     @Override
     public boolean addAlineacion(Alineacion alineacion) {
         String query = "INSERT INTO alineacion (id_rev, testFugas, testDireccion, amortiguacion,volante) VALUES (?, ?,?,?,?)";
@@ -35,7 +40,7 @@ public class AlineacionDAO implements iAlineacionDAO {
     public Alineacion getAlineacionByRevision(Revision revision) {
         RevisionDAO revDAO = RevisionDAO.getInstance();
 
-        String query = "select id_rev, testFugas, testDireccion,amortiguacion,volante from alineacion where id = ?";
+        String query = "select id_rev, testFugas, testDireccion,amortiguacion,volante from alineacion where id_rev = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, revision.getId());

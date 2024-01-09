@@ -10,6 +10,9 @@ public class Progress {
 
     private Revision revision;
 
+    public Progress() {
+    }
+
     /**
      * Constructor de la clase Progress.
      *
@@ -31,41 +34,32 @@ public class Progress {
     public int getProgress() {
         int progress = 0;
 
-        // Verifica si Identificacion está checkeada
-        if (isCheckeado(revision.getIdentificacion())) {
-            progress += 20; // Ajusta según tu lógica
+        if(revision.getIdentificacion().getContador() > 0){
+            progress += 20;
         }
 
+
         // Verifica si Exterior está checkeado
-        if (isCheckeado(revision.getExterior())) {
+        if (revision.getExterior().getContador()>0) {
             progress += 20; // Ajusta según tu lógica
         }
 
         // Verifica si Interior está checkeado
-        if (isCheckeado(revision.getInterior())) {
+        if (revision.getInterior().getContador()>0) {
             progress += 20; // Ajusta según tu lógica
         }
 
         // Verifica si Alineacion está checkeada
-        if (isCheckeado(revision.getAlineacion())) {
+        if (revision.getAlineacion().getContador()>0) {
             progress += 20; // Ajusta según tu lógica
         }
 
         // Verifica si Emisores está checkeado
-        if (isCheckeado(revision.getEmisores())) {
+        if (revision.getEmisores().getContador()>0) {
             progress += 20; // Ajusta según tu lógica
         }
 
         return progress;
     }
 
-    /**
-     * Método auxiliar para verificar si un objeto está checkeado.
-     *
-     * @param obj Objeto a verificar.
-     * @return true si el objeto no es nulo y está checkeado, false de lo contrario.
-     */
-    private boolean isCheckeado(Object obj) {
-        return obj != null && obj.isCheckeado();
-    }
 }

@@ -17,6 +17,6 @@ public interface iExteriorDAO {
      * @param revision objeto que contiene el id de la revision
      * @return objeto exterior completo
      */
-    public Revision getExteriorByRevision(Revision revision);
+    public Exterior getExteriorByRevision(Revision revision);
 
 }

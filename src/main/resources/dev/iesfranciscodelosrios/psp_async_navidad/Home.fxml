@@ -11,13 +11,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="891.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.iesfranciscodelosrios.psp_async_navidad.Controller.HomeController">
+<AnchorPane prefHeight="891.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.iesfranciscodelosrios.psp_async_navidad.Controller.HomeController">
    <children>
       <ProgressBar layoutX="365.0" layoutY="758.0" prefHeight="18.0" prefWidth="770.0" progress="0.0" />
-      <Button disable="true" layoutX="724.0" layoutY="720.0" mnemonicParsing="false" text="Simulacion" />
+      <Button disable="true" layoutX="694.0" layoutY="638.0" mnemonicParsing="false" text="Simulacion">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
       <Pane layoutX="530.0" layoutY="84.0" prefHeight="457.0" prefWidth="439.0" style="-fx-background-color: #5f85aa;">
          <children>
-            <Label layoutX="15.0" layoutY="94.0" prefHeight="39.0" prefWidth="117.0" text="Matricula">
+            <Label layoutX="15.0" layoutY="94.0" prefHeight="39.0" prefWidth="117.0" text="Matrícula">
                <font>
                   <Font size="22.0" />
                </font>
@@ -37,9 +41,9 @@
             <ComboBox layoutX="14.0" layoutY="230.0" prefHeight="25.0" prefWidth="409.0">
                <contextMenu>
                   <ContextMenu>
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-                    </items>
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                     </items>
                   </ContextMenu>
                </contextMenu>
             </ComboBox>

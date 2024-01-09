@@ -6,10 +6,10 @@ CREATE TABLE Coche
     marca varchar(45) NOT NULL,
     modelo varchar(45) NOT NULL,
     matricula varchar(45) NOT NULL,
+    neutricos varchar(45) NOT NULL,
     PRIMARY KEY (id, matricula),
     INDEX idx_matricula (matricula)  -- Agrega un índice en la columna matricula
 );
-
 
 create table Revision
 (

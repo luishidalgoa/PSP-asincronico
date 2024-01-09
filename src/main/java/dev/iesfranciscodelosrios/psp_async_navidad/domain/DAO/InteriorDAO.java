@@ -38,7 +38,7 @@ public class InteriorDAO implements iInteriorDAO {
     }
 
     @Override
-    public Revision getInteriorByRevision(Revision revision) {
+    public Interior getInteriorByRevision(Revision revision) {
         String sql = "SELECT * FROM interior WHERE id_rev = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -50,7 +50,7 @@ public class InteriorDAO implements iInteriorDAO {
                     boolean antideslizante = resultSet.getBoolean("antideslizante");
                     boolean frenado = resultSet.getBoolean("frenado");
 
-                    return new Interior(revision, antirobo, antideslizante, frenado).getRevision();
+                    return new Interior(revision, antirobo, antideslizante, frenado);
                 }
             }
         } catch (SQLException e) {
