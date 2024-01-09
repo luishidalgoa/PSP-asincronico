@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.iesfranciscodelosrios.psp_async_navidad.Controller.SimulacionController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: rgb(47, 99, 169);" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.iesfranciscodelosrios.psp_async_navidad.Controller.SimulacionController">
     <children>
         <TextField fx:id="txtMatricula" layoutX="231.0" layoutY="172.0" promptText="Matrícula" style="-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);" />
         <Button fx:id="btnIniciarSimulacion" layoutX="412.0" layoutY="165.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="121.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="INICIAR">
@@ -15,7 +15,7 @@
             <Font size="19.0" />
          </font></Button>
         <ProgressBar fx:id="progressBar" layoutX="53.0" layoutY="331.0" prefHeight="18.0" prefWidth="494.0" style="-fx-accent: #4CAF50;" />
-      <Label layoutX="91.0" layoutY="165.0" prefHeight="41.0" prefWidth="122.0" text="Nº Matricula :">
+      <Label layoutX="91.0" layoutY="165.0" prefHeight="41.0" prefWidth="122.0" text="Nº Matricula :" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>
