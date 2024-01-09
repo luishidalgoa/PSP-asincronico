@@ -23,7 +23,7 @@ public class ExteriorDAO implements iExteriorDAO {
 
     @Override
     public boolean addExterior(Exterior exterior) {
-        String query = "INSERT INTO Exterior (id_rev, neumaticos, testLimpiaParabrisas, testLuces, testCinturones, testDeposito) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Exterior (id_rev, neumaticos, testLimpiaParabrisas, testLuces, testCinturones, deposito) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, exterior.getRevision().getId());
@@ -90,7 +90,7 @@ public class ExteriorDAO implements iExteriorDAO {
         exterior.setTestLimpiaParabrisas(resultSet.getBoolean("testLimpiaParabrisas"));
         exterior.setTestLuces(resultSet.getBoolean("testLuces"));
         exterior.setTestCinturones(resultSet.getBoolean("testCinturones"));
-        exterior.setTestDeposito(resultSet.getBoolean("testDeposito"));
+        exterior.setTestDeposito(resultSet.getBoolean("deposito"));
 
         return exterior;
     }

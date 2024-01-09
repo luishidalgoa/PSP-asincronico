@@ -22,16 +22,18 @@ public class RegistroController {
     public void loadData(){
         List<Revision> list = RevisionDAO.getInstance().getAllRevisions();
 
-        for(Revision r : list){
-            System.out.println(r.getId());
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("Components/car_card.fxml"));
-            try {
-                Node node = loader.load();
-                card_cardController controller = loader.getController();
-                controller.setData(r);
-                container.getChildren().add(node);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        if(list != null){
+            for(Revision r : list){
+                System.out.println(r.getId());
+                FXMLLoader loader = new FXMLLoader(App.class.getResource("Components/car_card.fxml"));
+                try {
+                    Node node = loader.load();
+                    card_cardController controller = loader.getController();
+                    controller.setData(r);
+                    container.getChildren().add(node);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }

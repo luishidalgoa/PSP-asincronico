@@ -23,11 +23,11 @@ public class IdentificacionDAO implements iIdentificacionDAO {
 
     @Override
     public boolean addIdentificacion(Identificacion identificacion) {
-        String query = "INSERT INTO Identificacion (id_rev, id_coche) VALUES (?, ?)";
+        String query = "INSERT INTO Identificacion (id_rev, matricula) VALUES (?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, identificacion.getRevision().getId());
-            preparedStatement.setInt(2, identificacion.getCoche().getId());
+            preparedStatement.setString(2, identificacion.getCoche().getMatricula());
 
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
@@ -62,7 +62,7 @@ public class IdentificacionDAO implements iIdentificacionDAO {
 
     @Override
     public Revision getIdentificacionByCocheMat(Coche coche) {
-        String query = "SELECT * FROM Identificacion WHERE id_coche = ?";
+        String query = "SELECT * FROM Identificacion WHERE matricula = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, coche.getId());

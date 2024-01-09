@@ -3,6 +3,7 @@ package dev.iesfranciscodelosrios.psp_async_navidad.domain.model;
 import dev.iesfranciscodelosrios.psp_async_navidad.Services.Progress;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Revision extends Progress {
@@ -36,12 +37,21 @@ public class Revision extends Progress {
         this.emisores = emisores;
     }
 
-    public Revision() {
+    public Revision(Coche coche) {
+        this.identificacion= new Identificacion(this, coche);
+        this.exterior = new Exterior(this,false,false,false,false,false);
+        this.interior = new Interior(this,false,false,false);
+        this.exterior = new Exterior(this,false,false,false,false,false);
+        this.alineacion= new Alineacion(this,false,false,false,false);
+        this.emisores = new Emisores(this,-1,false);
+        this.estado = false;
+        this.fecha = Date.valueOf(LocalDate.now());
     }
 
     public Revision(int idRev) {
         this.id = idRev;
     }
+    public Revision(){}
 
     public int getId() {
         return id;

@@ -22,11 +22,35 @@ public class RevisionDAO implements iRevisionDAO {
         String query = "INSERT INTO revision (fecha, estado) VALUES (?, ?)";
 
         try {
-            PreparedStatement ps = conn.prepareStatement(query);
-            Revision result = new Revision();
+            // Segundo parámetro de getGeneratedKeys indica que se desea recuperar la columna "id"
+            PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setDate(1, new java.sql.Date(new Date().getTime()));
             ps.setBoolean(2, false);
-            return ps.executeUpdate() >0;
+            ps.executeUpdate();
+
+            // Obtener las claves generadas después de la inserción
+            ResultSet generatedKeys = ps.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                // Recuperar el ID generado
+                int idGenerado = generatedKeys.getInt(1);
+
+                // Asignar el ID generado a la revisión
+                revision.setId(idGenerado);
+
+                // Luego, puedes continuar con la inserción en otras tablas
+                IdentificacionDAO.getInstance().addIdentificacion(revision.getIdentificacion());
+                InteriorDAO.getInstance().addInterior(revision.getInterior());
+                ExteriorDAO.getInstance().addExterior(revision.getExterior());
+                AlineacionDAO.getInstance().addAlineacion(revision.getAlineacion());
+                EmisionesDAO.getInstance().addEmisiones(revision.getEmisores());
+
+                return true;
+            } else {
+                // No se pudo recuperar el ID generado
+                throw new SQLException("No se pudo obtener el ID generado después de la inserción en la tabla 'revision'");
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

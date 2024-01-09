@@ -20,7 +20,7 @@ public class EmisionesDAO implements iEmisionesDAO {
     }
     @Override
     public boolean addEmisiones(Emisores emisores) {
-        String sql = "INSERT INTO emisores (id_rev, indice, test_emisiones) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO emisores (id_rev, indice, testEmisiones) VALUES (?, ?, ?)";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, emisores.getRevision().getId());

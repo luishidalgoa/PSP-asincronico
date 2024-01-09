@@ -24,7 +24,6 @@ public class AlineacionDAO implements iAlineacionDAO {
 
         try {
             PreparedStatement ps = conn.prepareStatement(query);
-            Alineacion result = new Alineacion();
             ps.setInt(1, alineacion.getRevision().getId());
             ps.setBoolean(2, alineacion.isTestFugas());
             ps.setBoolean(3, alineacion.isTestDireccion());
