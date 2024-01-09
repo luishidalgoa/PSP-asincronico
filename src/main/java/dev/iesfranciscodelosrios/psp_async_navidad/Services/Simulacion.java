@@ -15,6 +15,8 @@ public class Simulacion {
     private int sleepMS = 500;
     private Random random = new Random();
 
+    public static final int NUMERO_TOTAL_PRUEBAS = 5;
+
     private Simulacion() {}
 
     /**
