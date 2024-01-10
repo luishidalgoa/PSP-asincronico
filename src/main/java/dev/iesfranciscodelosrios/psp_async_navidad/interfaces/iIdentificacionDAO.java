@@ -18,7 +18,7 @@ public interface iIdentificacionDAO {
      * @param revision Revision que contiene el id de la identificacion.
      * @return Identificacion completa.
      */
-    public Revision getIdentificacionByRevision(Revision revision);
+    public Identificacion getIdentificacionByRevision(Revision revision);
 
     /**
      * Devuelve la identificacion a traves del coche.

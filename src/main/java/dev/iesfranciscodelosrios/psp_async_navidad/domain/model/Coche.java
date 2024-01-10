@@ -1,12 +1,15 @@
 package dev.iesfranciscodelosrios.psp_async_navidad.domain.model;
 
 import dev.iesfranciscodelosrios.psp_async_navidad.Services.ControlAcceso;
+import dev.iesfranciscodelosrios.psp_async_navidad.Services.Simulacion;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.enums.Marca;
 public class Coche implements Runnable{
     private int id;
     private String matricula;
     private Marca marca;
     private String modelo;
+
+    public Pista pista;
 
     public Coche(int id, String matricula, Marca marca, String modelo) {
         this.id = id;
@@ -61,8 +64,7 @@ public class Coche implements Runnable{
 
     @Override
     public void run() {
-        Pista pista = ControlAcceso.getInstance().getPista();
-
+        pista = ControlAcceso.getInstance().getPista();
         System.out.println("termino el coche"+ id);
     }
 }

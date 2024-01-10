@@ -2,6 +2,8 @@ package dev.iesfranciscodelosrios.psp_async_navidad.Services;
 
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.DAO.RevisionDAO;
 import dev.iesfranciscodelosrios.psp_async_navidad.domain.model.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 
 import java.util.Random;
 
@@ -10,45 +12,43 @@ import java.util.Random;
  * Utiliza distintos métodos para simular cada prueba de la revisión y guarda los resultados en la base de datos.
  * Esta clase sigue el patrón Singleton, asegurando una única instancia durante la ejecución de la aplicación.
  */
-public class Simulacion {
-    private static Simulacion _instance;
+public class Simulacion implements Runnable {
     private int sleepMS = 500;
     private Random random = new Random();
 
-    private Simulacion() {}
+    private Revision _revision;
 
-    /**
-     * Obtiene la única instancia de la clase Simulacion (Singleton).
-     *
-     * @return La instancia única de Simulacion.
-     */
-    public static Simulacion getInstance() {
-        if (_instance == null) {
-            _instance = new Simulacion();
-        }
-        return _instance;
+    public static final int NUMERO_TOTAL_PRUEBAS = 5;
+
+    private ProgressBar progressBar;
+
+    public Simulacion(Revision revision, ProgressBar progressBar) {
+        _revision = revision;
+        this.progressBar = progressBar;
     }
 
     /**
      * Inicia la simulación completa de una revisión, ejecutando cada prueba en orden y guardando los resultados en la base de datos.
      *
-     * @param revision La revisión del vehículo que se va a simular.
      * @return El número total de pruebas realizadas durante la simulación.
      */
-    public int startSimulacion(Revision revision) {
+    public int startSimulacion() {
         int contadorTotalPruebas = 0;
 
-        contadorTotalPruebas += identificacion(revision.getIdentificacion());
-        contadorTotalPruebas += interior(revision.getInterior());
-        contadorTotalPruebas += exterior(revision.getExterior());
-        contadorTotalPruebas += alineacion(revision.getAlineacion());
-        contadorTotalPruebas += emisores(revision.getEmisores());
+        contadorTotalPruebas += identificacion(_revision.getIdentificacion());
+        contadorTotalPruebas += interior(_revision.getInterior());
+        contadorTotalPruebas += exterior(_revision.getExterior());
+        contadorTotalPruebas += alineacion(_revision.getAlineacion());
+        contadorTotalPruebas += emisores(_revision.getEmisores());
 
         // Guardar los datos en la base de datos a través de los DAOs
-        RevisionDAO revisionDAO = new RevisionDAO();
-        revisionDAO.addRevision(revision);
+        RevisionDAO revisionDAO = RevisionDAO.getInstance();
+        revisionDAO.addRevision(_revision);
 
         System.out.println("Total de pruebas realizadas: " + contadorTotalPruebas);
+        _revision.getIdentificacion().getCoche().pista.liberarPista();
+        ControlAcceso.getInstance().notifyA();
+        progressBar.setProgress(0);
         return contadorTotalPruebas;
     }
 
@@ -68,6 +68,7 @@ public class Simulacion {
         boolean identificacionAprobada = random.nextDouble() <= 0.9; // 90% de probabilidad de ser true
         contador += identificacionAprobada ? 1 : 0;
         System.out.println("Identificación: " + identificacionAprobada);
+        this.progressBar.setProgress(0.08);
 
         // Incrementar el contador específico de la clase Identificacion
         identificacion.setContador(identificacion.getContador() + contador);
@@ -94,13 +95,14 @@ public class Simulacion {
         interior.setAntirobo(antiroboAprobado);
         contador += antiroboAprobado ? 1 : 0;
         System.out.println("Antirobo: " + antiroboAprobado);
-
+        this.progressBar.setProgress(0.16);
         // Atributo antideslizante
         sleep();
         boolean antideslizanteAprobado = random.nextDouble() <= 0.9; // 90% de probabilidad de ser true
         interior.setAntideslizante(antideslizanteAprobado);
         contador += antideslizanteAprobado ? 1 : 0;
         System.out.println("Antideslizante: " + antideslizanteAprobado);
+        this.progressBar.setProgress(0.24);
 
         // Atributo frenado
         sleep();
@@ -108,6 +110,7 @@ public class Simulacion {
         interior.setFrenado(frenadoAprobado);
         contador += frenadoAprobado ? 1 : 0;
         System.out.println("Frenado: " + frenadoAprobado);
+        this.progressBar.setProgress(0.32);
 
         // Incrementar el contador específico de la clase Interior
         interior.setContador(interior.getContador() + contador);
@@ -133,6 +136,7 @@ public class Simulacion {
         exterior.setTestLimpiaParabrisas(testLimpiaParabrisasAprobado);
         contador += testLimpiaParabrisasAprobado ? 1 : 0;
         System.out.println("Test Limpia Parabrisas: " + testLimpiaParabrisasAprobado);
+        this.progressBar.setProgress(0.40);
 
         // Lógica de prueba de Luces
         sleep();
@@ -140,6 +144,7 @@ public class Simulacion {
         exterior.setTestLuces(testLucesAprobado);
         contador += testLucesAprobado ? 1 : 0;
         System.out.println("Test Luces: " + testLucesAprobado);
+        this.progressBar.setProgress(0.48);
 
         // Lógica de prueba de Cinturones
         sleep();
@@ -147,13 +152,14 @@ public class Simulacion {
         exterior.setTestCinturones(testCinturonesAprobado);
         contador += testCinturonesAprobado ? 1 : 0;
         System.out.println("Test Cinturones: " + testCinturonesAprobado);
-
+        this.progressBar.setProgress(0.56);
         // Lógica de prueba de Depósito
         sleep();
         boolean testDepositoAprobado = random.nextDouble() <= 0.9; // 90% de probabilidad de ser true
         exterior.setTestDeposito(testDepositoAprobado);
         contador += testDepositoAprobado ? 1 : 0;
         System.out.println("Test Depósito: " + testDepositoAprobado);
+        this.progressBar.setProgress(0.64);
 
         // Incrementar el contador específico de la clase Exterior
         exterior.setContador(exterior.getContador() + contador);
@@ -178,6 +184,7 @@ public class Simulacion {
         alineacion.setVolante(volanteAprobado);
         contador += volanteAprobado ? 1 : 0;
         System.out.println("Test Volante: " + volanteAprobado);
+        this.progressBar.setProgress(0.72);
 
         // Lógica de prueba de Fugas
         sleep();
@@ -185,6 +192,7 @@ public class Simulacion {
         alineacion.setTestFugas(testFugasAprobado);
         contador += testFugasAprobado ? 1 : 0;
         System.out.println("Test Fugas: " + testFugasAprobado);
+        this.progressBar.setProgress(0.80);
 
         // Lógica de prueba de Dirección
         sleep();
@@ -192,6 +200,7 @@ public class Simulacion {
         alineacion.setTestDireccion(testDireccionAprobado);
         contador += testDireccionAprobado ? 1 : 0;
         System.out.println("Test Dirección: " + testDireccionAprobado);
+        this.progressBar.setProgress(0.88);
 
         // Lógica de prueba de Amortiguación
         sleep();
@@ -199,6 +208,7 @@ public class Simulacion {
         alineacion.setAmortiguacion(amortiguacionAprobado);
         contador += amortiguacionAprobado ? 1 : 0;
         System.out.println("Test Amortiguación: " + amortiguacionAprobado);
+        this.progressBar.setProgress(0.96);
 
         // Incrementar el contador específico de la clase Alineacion
         alineacion.setContador(alineacion.getContador() + contador);
@@ -230,6 +240,7 @@ public class Simulacion {
         emisores.setTestEmisiones(testEmisionesAprobado);
         contador += testEmisionesAprobado ? 1 : 0;
         System.out.println("Test Emisiones: " + testEmisionesAprobado);
+        this.progressBar.setProgress(1.0);
 
         // Incrementar el contador específico de la clase Emisores
         emisores.setContador(emisores.getContador() + contador);
@@ -248,6 +259,11 @@ public class Simulacion {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void run() {
+        this.startSimulacion();
     }
 }
 

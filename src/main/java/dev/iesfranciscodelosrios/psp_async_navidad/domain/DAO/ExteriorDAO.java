@@ -23,11 +23,11 @@ public class ExteriorDAO implements iExteriorDAO {
 
     @Override
     public boolean addExterior(Exterior exterior) {
-        String query = "INSERT INTO Exterior (id_rev, neumaticos, testLimpiaParabrisas, testLuces, testCinturones, testDeposito) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Exterior (id_rev, neumaticos, testLimpiaParabrisas, testLuces, testCinturones, deposito) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, exterior.getRevision().getId());
-            preparedStatement.setString(2, exterior.getNeumaticos().toString());
+            preparedStatement.setBoolean(2, exterior.getNeumaticos());
             preparedStatement.setBoolean(3, exterior.isTestLimpiaParabrisas());
             preparedStatement.setBoolean(4, exterior.isTestLuces());
             preparedStatement.setBoolean(5, exterior.isTestCinturones());
@@ -42,7 +42,7 @@ public class ExteriorDAO implements iExteriorDAO {
     }
 
     @Override
-    public Revision getExteriorByRevision(Revision revision) {
+    public Exterior getExteriorByRevision(Revision revision) {
         String query = "SELECT * FROM Exterior WHERE id_rev = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -50,9 +50,13 @@ public class ExteriorDAO implements iExteriorDAO {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    Exterior exterior = mapResultSetToExterior(resultSet);
-                    exterior.setRevision(revision);
-                    return exterior.getRevision();
+                    Exterior exterior = new Exterior();
+                    exterior.setNeumaticos(resultSet.getBoolean("neumaticos"));
+                    exterior.setTestLimpiaParabrisas(resultSet.getBoolean("testLimpiaParabrisas"));
+                    exterior.setTestLuces(resultSet.getBoolean("testLuces"));
+                    exterior.setTestCinturones(resultSet.getBoolean("testCinturones"));
+                    exterior.setTestDeposito(resultSet.getBoolean("deposito"));
+                    return exterior;
                 }
             }
         } catch (SQLException e) {
@@ -82,11 +86,11 @@ public class ExteriorDAO implements iExteriorDAO {
     private Exterior mapResultSetToExterior(ResultSet resultSet) throws SQLException {
         Exterior exterior = new Exterior();
         exterior.setRevision(new Revision(resultSet.getInt("id_rev")));
-        exterior.setNeumaticos(Neumaticos.valueOf(resultSet.getString("neumaticos")));
+        exterior.setNeumaticos(resultSet.getBoolean("neumaticos"));
         exterior.setTestLimpiaParabrisas(resultSet.getBoolean("testLimpiaParabrisas"));
         exterior.setTestLuces(resultSet.getBoolean("testLuces"));
         exterior.setTestCinturones(resultSet.getBoolean("testCinturones"));
-        exterior.setTestDeposito(resultSet.getBoolean("testDeposito"));
+        exterior.setTestDeposito(resultSet.getBoolean("deposito"));
 
         return exterior;
     }

@@ -17,5 +17,5 @@ public interface iInteriorDAO {
      * @param revision objeto Revision que contiene el id del Interior.
      * @return objeto Interior completo.
      */
-    public Revision getInteriorByRevision(Revision revision);
+    public Interior getInteriorByRevision(Revision revision);
 }

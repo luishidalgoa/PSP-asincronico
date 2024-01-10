@@ -20,9 +20,8 @@ public class App<T> extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(new FXMLLoader(getUrlResource("Pages/Hub/","Hub")).load(),1400,920);//,1400, 920
+        scene = new Scene(new FXMLLoader(getUrlResource("","Maqueta")).load(),1400,920);//,1400, 920
         stage.setTitle("PSP Async Navidad");
-        stage.getIcons().add(new javafx.scene.image.Image(App.class.getResource("assets/pictures/app/Logo.png").toString()));
         stage.setScene(scene);
         stage.show();
     }

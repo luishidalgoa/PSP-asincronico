@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="354.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.iesfranciscodelosrios.psp_async_navidad.Components.card_cardController">
+   <children>
+      <SVGPath content="M135.2 117.4L109.1 192H402.9l-26.1-74.6C372.3 104.6 360.2 96 346.6 96H165.4c-13.6 0-25.7 8.6-30.2 21.4zM39.6 196.8L74.8 96.3C88.3 57.8 124.6 32 165.4 32H346.6c40.8 0 77.1 25.8 90.6 64.3l35.2 100.5c23.2 9.6 39.6 32.5 39.6 59.2V400v48c0 17.7-14.3 32-32 32H448c-17.7 0-32-14.3-32-32V400H96v48c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V400 256c0-26.7 16.4-49.6 39.6-59.2zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z" layoutX="-216.0" layoutY="-226.0" scaleX="0.1" scaleY="0.1" />
+      <Pane layoutX="2.0" layoutY="58.0" prefHeight="137.0" prefWidth="235.0" style="-fx-border-color: black;">
+         <children>
+            <Label layoutX="96.0" layoutY="6.0" text="Revision" />
+            <Label layoutX="14.0" layoutY="86.0" text="Estado: " />
+            <Label fx:id="label_estado" layoutX="68.0" layoutY="86.0" prefHeight="17.0" prefWidth="100.0" text="..................." />
+            <Label layoutX="14.0" layoutY="52.0" text="Fecha: " />
+            <Label fx:id="label_fecha" layoutX="68.0" layoutY="52.0" prefHeight="17.0" prefWidth="100.0" text="..................." />
+         </children>
+      </Pane>
+      <Pane layoutX="244.0" layoutY="58.0" prefHeight="137.0" prefWidth="235.0" style="-fx-border-color: black;">
+         <children>
+            <Label layoutX="82.0" layoutY="6.0" text="Identificacion" />
+            <Label layoutX="14.0" layoutY="31.0" text="matricula:" />
+            <Label layoutX="14.0" layoutY="56.0" prefHeight="25.0" prefWidth="40.0" text="Marca:" />
+            <Label fx:id="label_marca" layoutX="63.0" layoutY="60.0" prefHeight="17.0" prefWidth="108.0" text="................." />
+            <Label fx:id="label_mat" layoutX="74.0" layoutY="31.0" prefHeight="17.0" prefWidth="154.0" text=".................." />
+            <Label layoutX="14.0" layoutY="90.0" prefHeight="17.0" prefWidth="47.0" text="Modelo:" />
+            <Label fx:id="label_modelo" layoutX="68.0" layoutY="87.0" prefHeight="17.0" prefWidth="108.0" text="............." />
+         </children>
+      </Pane>
+      <Pane layoutX="488.0" layoutY="58.0" prefHeight="137.0" prefWidth="235.0" style="-fx-border-color: black;">
+         <children>
+            <Label layoutX="98.0" layoutY="6.0" text="Interior" />
+            <Label layoutX="24.0" layoutY="35.0" text="antirobo: " />
+            <Label layoutX="24.0" layoutY="60.0" prefHeight="25.0" prefWidth="80.0" text="antideslizante: " />
+            <Label fx:id="label_antideslizante" layoutX="104.0" layoutY="64.0" prefHeight="17.0" prefWidth="108.0" text="................." />
+            <Label fx:id="label_antirobo" layoutX="84.0" layoutY="35.0" prefHeight="17.0" prefWidth="145.0" text=".................." />
+            <Label layoutX="24.0" layoutY="94.0" prefHeight="17.0" prefWidth="47.0" text="frenado: " />
+            <Label fx:id="label_frenado" layoutX="83.0" layoutY="94.0" prefHeight="17.0" prefWidth="108.0" text="............." />
+         </children>
+      </Pane>
+      <Label fx:id="label_mat2" layoutX="94.0" layoutY="17.0" prefHeight="17.0" prefWidth="268.0" text="Matricula">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Pane layoutX="2.0" layoutY="207.0" prefHeight="137.0" prefWidth="235.0" style="-fx-border-color: black;">
+         <children>
+            <Label layoutX="97.0" layoutY="6.0" text="Exterior" />
+            <Label layoutX="15.0" layoutY="31.0" text="LimpiaParabrisas:" />
+            <Label layoutX="15.0" layoutY="48.0" prefHeight="25.0" prefWidth="80.0" text="Luces:" />
+            <Label fx:id="label_luces" layoutX="52.0" layoutY="52.0" prefHeight="17.0" prefWidth="108.0" text="................." />
+            <Label fx:id="label_limpiaparabrisas" layoutX="117.0" layoutY="31.0" prefHeight="17.0" prefWidth="80.0" text=".................." />
+            <Label layoutX="15.0" layoutY="74.0" prefHeight="17.0" prefWidth="71.0" text="Cinturones:" />
+            <Label fx:id="label_cinturones" layoutX="83.0" layoutY="74.0" prefHeight="17.0" prefWidth="108.0" text="............." />
+            <Label layoutX="15.0" layoutY="91.0" prefHeight="17.0" prefWidth="55.0" text="Deposito:" />
+            <Label fx:id="label_deposito" layoutX="70.0" layoutY="91.0" prefHeight="17.0" prefWidth="108.0" text="............." />
+         </children>
+      </Pane>
+      <Pane layoutX="244.0" layoutY="207.0" prefHeight="137.0" prefWidth="235.0" style="-fx-border-color: black;">
+         <children>
+            <Label layoutX="90.0" layoutY="6.0" text="Alineacion" />
+            <Label layoutX="14.0" layoutY="30.0" text="Volante:" />
+            <Label layoutX="14.0" layoutY="47.0" prefHeight="25.0" prefWidth="80.0" text="Fugas:" />
+            <Label fx:id="label_fugas" layoutX="51.0" layoutY="51.0" prefHeight="17.0" prefWidth="108.0" text="................." />
+            <Label fx:id="label_volante" layoutX="65.0" layoutY="30.0" prefHeight="17.0" prefWidth="80.0" text=".................." />
+            <Label layoutX="14.0" layoutY="73.0" prefHeight="17.0" prefWidth="71.0" text="Direccion:" />
+            <Label fx:id="label_direccion" layoutX="72.0" layoutY="73.0" prefHeight="17.0" prefWidth="108.0" text="............." />
+            <Label layoutX="14.0" layoutY="90.0" prefHeight="17.0" prefWidth="91.0" text="Amortiguacion:" />
+            <Label fx:id="label_amortiguacion" layoutX="105.0" layoutY="90.0" prefHeight="17.0" prefWidth="108.0" text="............." />
+         </children>
+      </Pane>
+      <Pane layoutX="488.0" layoutY="207.0" prefHeight="137.0" prefWidth="235.0" style="-fx-border-color: black;">
+         <children>
+            <Label layoutX="94.0" layoutY="5.0" text="Emisores" />
+            <Label layoutX="14.0" layoutY="60.0" text="Emisiones: " />
+            <Label fx:id="label_emisiones" layoutX="77.0" layoutY="60.0" prefHeight="17.0" prefWidth="80.0" text=".................." />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

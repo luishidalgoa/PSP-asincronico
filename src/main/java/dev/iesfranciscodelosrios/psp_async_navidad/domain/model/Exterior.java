@@ -4,7 +4,7 @@ import dev.iesfranciscodelosrios.psp_async_navidad.domain.enums.Neumaticos;
 
 public class Exterior {
     private Revision revision;
-    private Neumaticos neumaticos;
+    private boolean neumaticos;
     private boolean testLimpiaParabrisas;
     private boolean testLuces;
     private boolean testCinturones;
@@ -19,7 +19,7 @@ public class Exterior {
         this.contador = contador;
     }
 
-    public Exterior(Revision revision, Neumaticos neumaticos, boolean testLimpiaParabrisas, boolean testLuces, boolean testCinturones, boolean testDeposito) {
+    public Exterior(Revision revision, boolean neumaticos, boolean testLimpiaParabrisas, boolean testLuces, boolean testCinturones, boolean testDeposito) {
         this.revision = revision;
         this.neumaticos = neumaticos;
         this.testLimpiaParabrisas = testLimpiaParabrisas;
@@ -39,11 +39,11 @@ public class Exterior {
         this.revision = revision;
     }
 
-    public Neumaticos getNeumaticos() {
+    public boolean getNeumaticos() {
         return neumaticos;
     }
 
-    public void setNeumaticos(Neumaticos neumaticos) {
+    public void setNeumaticos(boolean neumaticos) {
         this.neumaticos = neumaticos;
     }
 

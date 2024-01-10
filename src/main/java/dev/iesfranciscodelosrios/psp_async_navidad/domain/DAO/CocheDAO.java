@@ -22,6 +22,7 @@ public class CocheDAO implements iCocheDAO {
         String query = "select id,marca,modelo,matricula from coche where matricula = ?";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1,matricula);
             ResultSet rs=ps.executeQuery();
             while(rs.next()){
                 Coche result = new Coche();
@@ -59,13 +60,12 @@ public class CocheDAO implements iCocheDAO {
 
     @Override
     public boolean addCoche(Coche coche) {
-        String query = "Insert Into coche (id,marca,modelo,matricula) values(?,?,?,?)";
+        String query = "Insert Into coche (marca,modelo,matricula) values(?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(query);
-            ps.setInt(1,coche.getId());
-            ps.setString(2,coche.getMarca().toString());
-            ps.setString(3,coche.getModelo());
-            ps.setString(4,coche.getMatricula());
+            ps.setString(1,coche.getMarca().toString());
+            ps.setString(2,coche.getModelo());
+            ps.setString(3,coche.getMatricula());
             return ps.executeUpdate() >0;
         }catch (SQLException e){
             throw new RuntimeException(e);
