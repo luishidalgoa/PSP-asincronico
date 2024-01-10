@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="891.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.iesfranciscodelosrios.psp_async_navidad.Controller.HomeController">
    <children>
-      <ProgressBar layoutX="365.0" layoutY="758.0" prefHeight="18.0" prefWidth="770.0" progress="0.0" />
+      <ProgressBar fx:id="progressBar" layoutX="365.0" layoutY="758.0" prefHeight="18.0" prefWidth="770.0" progress="0.0" />
       <Button layoutX="694.0" layoutY="638.0" mnemonicParsing="false" onAction="#iniciarSimulacion" text="Simulacion">
          <font>
             <Font size="18.0" />
@@ -49,5 +49,15 @@
             </ComboBox>
          </children>
       </Pane>
+      <Label fx:id="pista" layoutX="594.0" layoutY="704.0" prefHeight="39.0" prefWidth="311.0">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Label fx:id="info" layoutX="365.0" layoutY="776.0" prefHeight="39.0" prefWidth="639.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

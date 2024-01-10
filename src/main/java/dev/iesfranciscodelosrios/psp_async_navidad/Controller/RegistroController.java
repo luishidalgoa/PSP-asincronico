@@ -29,7 +29,7 @@ public class RegistroController {
                 try {
                     Node node = loader.load();
                     card_cardController controller = loader.getController();
-                    controller.setData(r);
+                    controller.setRevision(r);
                     container.getChildren().add(node);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -40,5 +40,10 @@ public class RegistroController {
 
     public void setData(){
 
+    }
+    @FXML
+    public void refrescar(){
+        container.getChildren().clear();
+        loadData();
     }
 }

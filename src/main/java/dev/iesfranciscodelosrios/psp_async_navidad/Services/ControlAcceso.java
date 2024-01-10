@@ -13,7 +13,7 @@ public class ControlAcceso {
 
     private ControlAcceso(){
         for (int i = 0; i < 3 ; i++) {
-            pistas.add(new Pista());
+            pistas.add(new Pista(i));
         }
     }
 
@@ -26,13 +26,15 @@ public class ControlAcceso {
         }
         try {
             System.out.println("No hay pistas libres, esperando");
-            wait(); // Esperar si no hay pistas libres
+            this.wait(); // Esperar si no hay pistas libres
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return getPista(); // Intentar nuevamente después de la espera
     }
-
+    public synchronized void notifyA(){
+        this.notify();
+    }
 
 
     public static ControlAcceso getInstance(){

@@ -14,6 +14,8 @@ public class HomeController {
 
     @FXML
     private TextField input_mat;
+    @FXML
+    private Label pista;
 
     @FXML
     private Button btnSimulacion;
@@ -26,16 +28,12 @@ public class HomeController {
 
     @FXML
     private ProgressBar progressBar;
+    @FXML
+    private Label info;
 
-    private Simulacion simulacion;
 
     @FXML
     private void initialize() {
-        // Método llamado después de cargar la interfaz.
-        // Puedes realizar configuraciones adicionales aquí.
-
-        // Inicializar la simulación
-        simulacion = Simulacion.getInstance();
 
         // Configurar el ComboBox con algunos valores de ejemplo
         for (Marca marca : Marca.values()) {
@@ -55,20 +53,15 @@ public class HomeController {
         coche = CocheDAO.getInstance().getCocheByMat(coche.getMatricula());
         // Crear un objeto de revisión con los datos del vehículo
         Revision revision = new Revision(coche);
-
-
         // Iniciar la simulación y obtener el número total de pruebas realizadas
-        int totalPruebas = simulacion.startSimulacion(revision);
+        revision.getIdentificacion().getCoche().run();
+        new Thread(new Simulacion(revision,progressBar)).start();
 
+
+        pista.setText("Se asigno la pista: "+ revision.getIdentificacion().getCoche().pista.numero);
         // Actualizar la barra de progreso basada en el progreso de la revisión
-        actualizarBarraProgreso(totalPruebas);
     }
 
-    private void actualizarBarraProgreso(int totalPruebas) {
-        // Actualizar la barra de progreso según el número total de pruebas
-        double progreso = (double) totalPruebas / Simulacion.NUMERO_TOTAL_PRUEBAS;
-        //progressBar.setProgress(progreso);
-
-        // Puedes realizar acciones adicionales según el progreso, si es necesario.
+    private void actualizarBarraProgreso() {
     }
 }

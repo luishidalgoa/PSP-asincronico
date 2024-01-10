@@ -6,7 +6,8 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxWidth="726.0" minWidth="726.0" prefHeight="354.0" prefWidth="726.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.iesfranciscodelosrios.psp_async_navidad.Components.card_cardController">
+
+<AnchorPane prefHeight="354.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.iesfranciscodelosrios.psp_async_navidad.Components.card_cardController">
    <children>
       <SVGPath content="M135.2 117.4L109.1 192H402.9l-26.1-74.6C372.3 104.6 360.2 96 346.6 96H165.4c-13.6 0-25.7 8.6-30.2 21.4zM39.6 196.8L74.8 96.3C88.3 57.8 124.6 32 165.4 32H346.6c40.8 0 77.1 25.8 90.6 64.3l35.2 100.5c23.2 9.6 39.6 32.5 39.6 59.2V400v48c0 17.7-14.3 32-32 32H448c-17.7 0-32-14.3-32-32V400H96v48c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32V400 256c0-26.7 16.4-49.6 39.6-59.2zM128 288a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm288 32a32 32 0 1 0 0-64 32 32 0 1 0 0 64z" layoutX="-216.0" layoutY="-226.0" scaleX="0.1" scaleY="0.1" />
       <Pane layoutX="2.0" layoutY="58.0" prefHeight="137.0" prefWidth="235.0" style="-fx-border-color: black;">
@@ -40,7 +41,7 @@
             <Label fx:id="label_frenado" layoutX="83.0" layoutY="94.0" prefHeight="17.0" prefWidth="108.0" text="............." />
          </children>
       </Pane>
-      <Label fx:id="label_mat" layoutX="94.0" layoutY="17.0" prefHeight="17.0" prefWidth="268.0" text="Matricula">
+      <Label fx:id="label_mat2" layoutX="94.0" layoutY="17.0" prefHeight="17.0" prefWidth="268.0" text="Matricula">
          <font>
             <Font size="16.0" />
          </font>

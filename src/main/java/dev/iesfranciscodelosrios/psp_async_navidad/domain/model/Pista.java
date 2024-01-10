@@ -3,14 +3,17 @@ package dev.iesfranciscodelosrios.psp_async_navidad.domain.model;
 public class Pista {
     public int completadoPorcentaje;
     private Revision revision;
+    public int numero;
 
     public boolean libre = true;
 
-    public Pista() {
+    public Pista(int numero) {
         completadoPorcentaje = 0;
+        this.numero= numero;
     }
 
-    public Pista(Revision revision) {
+    public Pista(int numero,Revision revision) {
+        this.numero = numero;
         this.revision = revision;
         completadoPorcentaje = 0;
     }
