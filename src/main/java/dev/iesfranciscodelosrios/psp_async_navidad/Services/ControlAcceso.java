@@ -17,6 +17,11 @@ public class ControlAcceso {
         }
     }
 
+    /**
+     * Se garantiza el acceso unico de manera sincrona para obtener una pista libre. si no lo hay se queda esperando el hilo
+     * a una nueva notificacion
+     * @return
+     */
     public synchronized Pista getPista() {
         for (Pista pista : pistas) {
             if (pista.getLibre()) {
@@ -32,6 +37,10 @@ public class ControlAcceso {
         }
         return getPista(); // Intentar nuevamente después de la espera
     }
+
+    /**
+     * Notificamos al hilo actual de que ya hay una pista libre para que reanude la ejecución
+     */
     public synchronized void notifyA(){
         this.notify();
     }
